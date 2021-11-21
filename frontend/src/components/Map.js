@@ -15,7 +15,7 @@ const center = {
   lng: 11.9944233
 }
 
-function MyComponent() {
+const Map = () => {
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => console.log(position))
@@ -39,4 +39,4 @@ function MyComponent() {
   )
 }
 
-export const Map = React.memo(MyComponent)
+export default React.memo(Map)
