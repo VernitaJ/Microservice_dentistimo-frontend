@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
-import { useSubscription } from 'mqtt-react-hooks'
+import React, { useEffect, useState } from 'react'
+import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api'
 import dentists from '../resources/dentists.json'
+import DentistTimes from './DentistTimeDisplay'
 
 // Create an .env in the frontend with a Maps JavaScript API key.
 const API_KEY = process.env.REACT_APP_GOOGLEMAPS_APIKEY
@@ -10,13 +10,15 @@ const containerStyle = {
   width: '100%',
   height: '100vh',
 }
-let coordinate
+
 // Gothenburg coordinates
 const defaultCenter = {
   lat: 57.6863144,
   lng: 11.9944233,
 }
 const Map = (props) => {
+  const [showingInfoWindow, setShowingInfoWindow] = useState('-1');
+
   // Permission to track location doesn't do anything currently. Just enabling location tracking for future implementations/updates.
   useEffect(() => {
     if (navigator.geolocation) {
@@ -28,6 +30,14 @@ const Map = (props) => {
     }
   })
 
+const showWindow = (index) => {
+  setShowingInfoWindow(index);
+}
+
+  const toggleWindow = (index) => {
+    this.infoWindow.open = this.infoWindow.open === index ? null : index
+  }
+
   const message = dentists //useSubscription('frontend/dentists'); need to allign this with backend
   return (
     <LoadScript googleMapsApiKey={API_KEY}>
@@ -36,15 +46,23 @@ const Map = (props) => {
         center={defaultCenter}
         zoom={10}
       >
-        {message.dentists.map((dentist) => {
-          return (<Marker
+      {message.dentists.map((dentist, index) => {
+        {console.log(index)}
+        return (
+        <div>
+          <Marker
+            key = {{index}}
+            onClick={()=>showWindow(index)}
             position={{
-              lat: dentist.coordinate.latitude,
-              lng: dentist.coordinate.longitude,
+            lat: dentist.coordinate.latitude,
+            lng: dentist.coordinate.longitude,
             }}
-          />) //lat: dentist.coordinate.latitude, lng: dentist.coordinate.longitude
+        />
+        {showingInfoWindow == index ? <DentistTimes dentist={dentist}/>:
+        <div></div>}
+        </div>
+          ) //lat: dentist.coordinate.latitude, lng: dentist.coordinate.longitude
         })}
-        <></>
       </GoogleMap>
     </LoadScript>
   )
