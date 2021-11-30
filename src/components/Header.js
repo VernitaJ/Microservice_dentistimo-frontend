@@ -8,7 +8,7 @@ function Header() {
       <Navbar bg="dark" variant="dark" fixed="top">
         <Container>
           <Navbar.Brand className="justify-content-start" href="#home"> 
-            Dentisimo
+            Dentistimo
           </Navbar.Brand>
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
