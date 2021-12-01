@@ -1,35 +1,26 @@
-import './App.css';
+import './App.css'
 import Map from './components/Map'
-import Test from './components/Test'
-import React, { useState } from 'react';
-import { Connector, useSubscription } from 'mqtt-react-hooks';
-const Children = () => {
-  const { connectionStatus } = useSubscription('frontend/#');
-  return (
-    <>
-      <span>{connectionStatus}</span>
-      <hr />
-    </>
-  );
-};
-
+import React, { useEffect, useState } from 'react'
+import { Connector, useSubscription } from 'mqtt-react-hooks'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Header from './components/Header';
+import Footer from './components/Footer';
 function App() {
   return (
-    <Connector brokerUrl="ws://localhost:9001" options={
-      {
-          username: "frontend",
-          password: "1234"
-      }
-        }
-        >
-          <Test />
+    <Connector
+      brokerUrl="ws://localhost:9001"
+      options={{
+        username: 'frontend',
+        password: '1234',
+      }}
+    >
       <div>
-        <Children />
-         <Map 
-         /> 
+        <Header />
+        <Map />
+        <Footer />
       </div>
     </Connector>
   )
 }
 
-export default App;
+export default App
