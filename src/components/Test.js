@@ -1,8 +1,7 @@
 import React from 'react'
 import { useMqttState } from 'mqtt-react-hooks'
-//import dentists from '../resources/dentists.json'
 
-export default function Status() {
+export default function Test() {
   const { client } = useMqttState()
 
   function handleClick() {
@@ -90,7 +89,7 @@ export default function Status() {
 
   return (
     <button type="button" onClick={() => handleClick()}>
-      Dentists
+      Clicm me to get dentists
     </button>
   )
 }
