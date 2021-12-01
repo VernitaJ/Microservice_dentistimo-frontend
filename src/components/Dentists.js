@@ -3,13 +3,14 @@ import { Marker } from '@react-google-maps/api'
 import { useSubscription } from 'mqtt-react-hooks'
 
 
-export default function Dentists() {
+const Dentists = () => {
     const { message } = useSubscription('frontend/respond/dentists')
 
     if (message) {
       const x = JSON.parse(message.message)
       return (
-        <>{
+        <>
+          { console.log(x)}{
           x.dentists.map((dentist, index) => {
             return (
               <Marker
@@ -27,3 +28,4 @@ export default function Dentists() {
       return <></>
     }
   }
+  export default Dentists
