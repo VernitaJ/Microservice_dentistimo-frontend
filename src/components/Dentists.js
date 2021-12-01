@@ -1,16 +1,29 @@
+import React, { useEffect, useState } from 'react'
+import { Marker } from '@react-google-maps/api'
+import { useSubscription } from 'mqtt-react-hooks'
 
-import { useSubscription } from 'mqtt-react-hooks';
-import React from 'react'
-import dentists from '../resources/dentists.json'
 
+export default function Dentists() {
+    const { message } = useSubscription('frontend/respond/dentists')
 
-const Dentists = () => {
-    let coordinates = []
-    const message =  dentists //useSubscription('frontend/dentists'); need to allign this with backend
-    message.dentists.forEach(e => { 
-    setMarker(e.coordinates)
-  });
-  };
-  
-
-  export default Dentists
+    if (message) {
+      const x = JSON.parse(message.message)
+      return (
+        <>{
+          x.dentists.map((dentist, index) => {
+            return (
+              <Marker
+                key={{ index }}
+                position={{
+                  lat: dentist.coordinate.latitude,
+                  lng: dentist.coordinate.longitude,
+                }}
+              />
+            )
+          })}
+        </>
+      )
+    } else {
+      return <></>
+    }
+  }
