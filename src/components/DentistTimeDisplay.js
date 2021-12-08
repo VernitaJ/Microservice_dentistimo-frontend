@@ -1,9 +1,20 @@
 import React from 'react'
-import "../Map.css"
-import Table from 'react-bootstrap/Table'
+import '../Map.css'
 import { InfoWindow } from '@react-google-maps/api'
+import TimeSlots from './TimeSlots'
 
 const DentistTimes = (props) => {
+
+const mqtt = require('mqtt');
+const client = mqtt.connect('wss://test.mosquitto.org:9001');
+
+client.on('connect', () => {
+  setInterval(() => {
+    client.publish('frontend/availability', 'I find this interesting');
+    console.log("published")
+}, 3000);
+});
+
   return (
     <div>
       {console.log('table here', props.dentist)}
@@ -14,7 +25,8 @@ const DentistTimes = (props) => {
         }}
       >
         <div className="informationWindow">
-        <h2>{props.dentist.name}</h2>
+        <TimeSlots/>
+          <h2>{props.dentist.name}</h2>
           <h4>Monday : {props.dentist.openinghours.monday}</h4>
           <h4>Tuesday : {props.dentist.openinghours.tuesday}</h4>
           <h4>Wednesday : {props.dentist.openinghours.wednesday}</h4>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api'
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
 import dentists from '../resources/dentists.json'
 import DentistTimes from './DentistTimeDisplay'
 
@@ -19,6 +19,9 @@ const defaultCenter = {
 const Map = (props) => {
   const [showingInfoWindow, setShowingInfoWindow] = useState('-1');
 
+  // function handleClick(message) {
+  //   return client.publish('frontend/availability/#', message);
+  // }
   // Permission to track location doesn't do anything currently. Just enabling location tracking for future implementations/updates.
   useEffect(() => {
     if (navigator.geolocation) {
@@ -34,11 +37,12 @@ const showWindow = (index) => {
   setShowingInfoWindow(index);
 }
 
-  const toggleWindow = (index) => {
-    this.infoWindow.open = this.infoWindow.open === index ? null : index
-  }
+  // const toggleWindow = (index) => {
+  //   this.infoWindow.open = this.infoWindow.open === index ? null : index
+  // }
 
-  const message = dentists //useSubscription('frontend/dentists'); need to allign this with backend
+  const data = dentists;
+  
   return (
     <LoadScript googleMapsApiKey={API_KEY}>
       <GoogleMap
@@ -46,8 +50,7 @@ const showWindow = (index) => {
         center={defaultCenter}
         zoom={10}
       >
-      {message.dentists.map((dentist, index) => {
-        {console.log(index)}
+      {data.dentists.map((dentist, index) => {
         return (
         <div>
           <Marker
@@ -58,7 +61,7 @@ const showWindow = (index) => {
             lng: dentist.coordinate.longitude,
             }}
         />
-        {showingInfoWindow == index ? <DentistTimes dentist={dentist}/>:
+        {showingInfoWindow === index ? <DentistTimes dentist={dentist}/>:
         <div></div>}
         </div>
           ) //lat: dentist.coordinate.latitude, lng: dentist.coordinate.longitude

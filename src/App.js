@@ -1,21 +1,29 @@
 import './App.css';
 import Map from './components/Map'
-import React, { useEffect, useState } from 'react';
-import { Connector, useSubscription } from 'mqtt-react-hooks';
+import {useEffect, useState} from 'react'
 
+import { useMqttState} from 'mqtt-react-hooks'
 function App() {
+const {client, connectionStatus} = useMqttState();
+// console.log(client)
+// const client = mqtt.connect('wss://test.mosquitto.org:9001');
+
+// client.on('connect', () => {
+//   console.log("you are here")
+//     client.subscribe("frontend/availability")
+// });
+
+// setInterval(() => {
+//   client.publish('frontend/availability', "heyyy")
+//   }, 4000)
+
   return (
-    <Connector brokerUrl="ws://localhost:9001" options={
-      {
-          username: "frontend",
-          password: "1234"
-      }
-        }>
       <div>
+        <h1>Connection: {connectionStatus}</h1>
+       
          <Map 
-         /> 
+         />
       </div>
-    </Connector>
   )
 }
 
