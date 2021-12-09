@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
 import dentists from '../resources/dentists.json'
 import DentistTimes from './DentistTimeDisplay'
+import { useMqttState } from 'mqtt-react-hooks'
 
 // Create an .env in the frontend with a Maps JavaScript API key.
 const API_KEY = process.env.REACT_APP_GOOGLEMAPS_APIKEY
@@ -19,7 +20,13 @@ const defaultCenter = {
 const Map = (props) => {
   const [showingInfoWindow, setShowingInfoWindow] = useState('-1');
   const [hover, setHover] = useState(false)
+  const { client } = useMqttState();
 
+  useEffect(() => {
+    if (client) {
+      client.publish('frontend/availability/req', "I need data")
+    } 
+  }, [client])
   // function handleClick(message) {
   //   return client.publish('frontend/availability/#', message);
   // }

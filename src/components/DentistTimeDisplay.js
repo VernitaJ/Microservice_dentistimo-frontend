@@ -1,19 +1,12 @@
 import React from 'react'
 import '../Map.css'
+import { useMqttState } from 'mqtt-react-hooks'
 import { InfoWindow } from '@react-google-maps/api'
 // import TimeSlots from './TimeSlots'
 
 const DentistTimes = (props) => {
-
-const mqtt = require('mqtt');
-const client = mqtt.connect('wss://test.mosquitto.org:9001');
-
-client.on('connect', () => {
-  setInterval(() => {
-    client.publish('frontend/availability', 'I find this interesting');
-    console.log("published")
-}, 3000);
-});
+const { client } = useMqttState();
+client.publish('frontend/availability/response', 'some_data')
 
   return (
     <div>
