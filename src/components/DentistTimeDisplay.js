@@ -1,7 +1,7 @@
 import React from 'react'
 import '../Map.css'
 import { InfoWindow } from '@react-google-maps/api'
-import TimeSlots from './TimeSlots'
+// import TimeSlots from './TimeSlots'
 
 const DentistTimes = (props) => {
 
@@ -17,15 +17,19 @@ client.on('connect', () => {
 
   return (
     <div>
-      {console.log('table here', props.dentist)}
       <InfoWindow
+      className="background"
         position={{
           lat: props.dentist.coordinate.latitude,
           lng: props.dentist.coordinate.longitude,
         }}
+        options={{
+          pixelOffset: new window.google.maps.Size(
+            0, -30
+          )
+        }}
       >
         <div className="informationWindow">
-        <TimeSlots/>
           <h2>{props.dentist.name}</h2>
           <h4>Monday : {props.dentist.openinghours.monday}</h4>
           <h4>Tuesday : {props.dentist.openinghours.tuesday}</h4>

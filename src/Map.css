@@ -1,9 +1,13 @@
 .informationWindow
 {
-    background: rgb(46, 85, 214);
+    background: rgb(46, 85, 214, 0.4);
     padding: 2em;
     width:auto;
     color: white;
     box-shadow: 3px 3px 10px rgba(0,0,0,0.6);
     border: 1px solid #666;
+}
+
+.background {
+    background: rgb(255,255,255,0.2)
 }

@@ -8,7 +8,7 @@ import reportWebVitals from './reportWebVitals';
 ReactDOM.render(
   <React.StrictMode>
      <Connector 
-        brokerUrl = {"wss://172.17.0.1:9001"}
+        brokerUrl = {"ws://localhost:9001"}
         options={{
         username : "frontend",
         password: "1234"

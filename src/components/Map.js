@@ -18,6 +18,7 @@ const defaultCenter = {
 }
 const Map = (props) => {
   const [showingInfoWindow, setShowingInfoWindow] = useState('-1');
+  const [hover, setHover] = useState(false)
 
   // function handleClick(message) {
   //   return client.publish('frontend/availability/#', message);
@@ -35,6 +36,7 @@ const Map = (props) => {
 
 const showWindow = (index) => {
   setShowingInfoWindow(index);
+  setHover(true);
 }
 
   // const toggleWindow = (index) => {
@@ -55,13 +57,14 @@ const showWindow = (index) => {
         <div>
           <Marker
             key = {{index}}
-            onClick={()=>showWindow(index)}
+            onMouseOver={()=>showWindow(index)}
+            // onMouseOut={()=>setShowingInfoWindow("-1")}
             position={{
             lat: dentist.coordinate.latitude,
             lng: dentist.coordinate.longitude,
             }}
         />
-        {showingInfoWindow === index ? <DentistTimes dentist={dentist}/>:
+        {showingInfoWindow === index && hover ? <DentistTimes dentist={dentist}/>:
         <div></div>}
         </div>
           ) //lat: dentist.coordinate.latitude, lng: dentist.coordinate.longitude
