@@ -28,6 +28,23 @@
   color: #61dafb;
 }
 
+.side-bar {
+  position: relative;
+  width: 50vh;
+  height: 100vh;
+  background-color: white;
+  border:1px solid white;
+  outline-offset: -20px;
+}
+
+.calendar {
+  width: 50%;
+  height: 120%;
+  outline:1px solid yellow;
+  position: absolute;
+  font-size: 0.85em;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

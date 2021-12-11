@@ -1,55 +1,98 @@
-import React, { useReducer } from "react";
+import React, { useState } from 'react'
 import {
   Card,
-  CardTitle,
-  Col,
-  Container,
-  Row
-} from "reactstrap";
-import initialTimeSlots from "../timeslots.json";
-import "bootstrap/dist/css/bootstrap.min.css";
+  CardBody,
+  Button,
+  Collapse,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+} from 'reactstrap'
+import initialTimeSlots from '../timeslots.json'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
-const TimeSlots = ()  => {
-const todayTime = Date.now();
-let timeslots = initialTimeSlots;
+const TimeSlots = (props) => {
+  let [collapse, setCollapse] = useState('-1')
+  let [isOpen, setIsOpen] = useState(false)
+  let name, email, mobile;
+
+  const toggle = (index) => {
+    setCollapse(index)
+    setIsOpen(!isOpen)
+  }
+  let timeslots = initialTimeSlots
   return (
-    <>
-      <div className="text-sm-left text-md-center">
-        <Container>
-          <hr className="my-2" />
-          <p className="lead">
-            Available time slots{" "}
-          </p>
-          <p>
-            Time slots marked in <span className="red-text">red</span> are
-            already booked.
-          </p>
-        </Container>
-      </div>
-      <Container className="App">
-        <Row>
-          {timeslots.map(({ id, startTime, endTime, booked }) => {
-            if (startTime > todayTime) {
-              return (
-                <Col sm={{ size: 8, offset: 2 }} key={id}>
-                  <Card body key={id}>
-                    <CardTitle tag="h5">{`${startTime} - ${endTime}`}</CardTitle>
-                  </Card>
-                </Col>
-              );
-            }
-            return (
-              <Col sm={{ size: 8, offset: 2 }} key={id}>
-                <Card body key={id} color="danger" outline>
-                  <CardTitle tag="h5">{`${startTime} - ${endTime}`}</CardTitle>
-                </Card>
-              </Col>
-            );
-          })}
-        </Row>
-      </Container>
-    </>
-  );
+    <div>
+      {timeslots.filter((timeSlots) => timeSlots.date == (props.date)).map(timeSlot => (
+          <div key={timeSlot.id}>
+            <Button
+              color="primary"
+              onClick={() => toggle(timeSlot.id)}
+              style={{ marginBottom: '1rem' }}
+            >
+              {timeSlot.startTime} - {timeSlot.endTime}
+            </Button>
+            {timeSlot.id === collapse ? (
+              <Modal isOpen={isOpen} className="booking-modal" backdrop={true}>
+                <ModalHeader>
+                  You've selected: {timeSlot.startTime} - {timeSlot.endTime}
+                </ModalHeader>
+                <ModalBody>
+                  <Form>
+                    <FormGroup>
+                      <Label for="user">Full Name</Label>
+                      <Input
+                        type="text"
+                        name="name"
+                        value={name}
+                        onChange={e => name = e.target.value}
+                        id="user-name"
+                        placeholder="name"
+                      />
+                    </FormGroup>
+                    <FormGroup>
+                      <Label for="exampleEmail">Email</Label>
+                      <Input
+                        type="email"
+                        name="email"
+                        value={email}
+                        onChange={e => email = e.target.value}
+                        id="exampleEmail"
+                        placeholder="email"
+                      />
+                    </FormGroup>
+                    <FormGroup>
+                      <Label for="mobileNumer">Mobile</Label>
+                      <Input
+                        type="text"
+                        name="mobile"
+                        onChange={e => mobile = e.target.value}
+                        id="mobile"
+                        placeholder="070-007-0007"
+                      />
+                    </FormGroup>
+                  </Form>
+                </ModalBody>
+                <ModalFooter>
+                  <Button color="primary" onClick={() => console.log('submit appointment for ', name, " for ", timeSlot.date, " email ", email)}>
+                    Confirm
+                  </Button>{' '}
+                  <Button color="secondary" onClick={() => setIsOpen(false)}>
+                    Cancel
+                  </Button>
+                </ModalFooter>
+              </Modal>
+            ) : null}
+          </div>
+        )
+      )}
+    </div>
+  )
 }
 
 export default TimeSlots
