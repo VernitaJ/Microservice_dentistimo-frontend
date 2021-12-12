@@ -1,12 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import { Connector} from 'mqtt-react-hooks'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
+     <Connector 
+        brokerUrl = {"ws://localhost:9001"}
+        options={{
+        username : "frontend",
+        password: "1234"
+        }}>
     <App />
+    </Connector>
   </React.StrictMode>,
   document.getElementById('root')
 );
