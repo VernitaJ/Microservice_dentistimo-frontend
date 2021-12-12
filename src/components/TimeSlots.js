@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
 import {
-  Card,
-  CardBody,
   Button,
-  Collapse,
   Form,
   FormGroup,
   Label,
@@ -25,10 +22,14 @@ const TimeSlots = (props) => {
     setCollapse(index)
     setIsOpen(!isOpen)
   }
+  
   let timeslots = initialTimeSlots
+
+  let dateslots = timeslots.filter((timeSlots) => timeSlots.date === (props.date))
+
   return (
     <div>
-      {timeslots.filter((timeSlots) => timeSlots.date == (props.date)).map(timeSlot => (
+      {dateslots.length > 0 ? dateslots.map(timeSlot => (
           <div key={timeSlot.id}>
             <Button
               color="primary"
@@ -71,6 +72,7 @@ const TimeSlots = (props) => {
                       <Input
                         type="text"
                         name="mobile"
+                        value={mobile}
                         onChange={e => mobile = e.target.value}
                         id="mobile"
                         placeholder="070-007-0007"
@@ -90,7 +92,7 @@ const TimeSlots = (props) => {
             ) : null}
           </div>
         )
-      )}
+      ) : <div>No available time slots</div>}
     </div>
   )
 }

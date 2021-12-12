@@ -2,8 +2,8 @@
     {
       "id": 0,
       "date": "2021-12-10",
-      "startTime": "9:00 A.M.",
-      "endTime": "10:00 A.M.",
+      "startTime": "9:00",
+      "endTime": "10:00",
       "booked": false,
       "contactName": null,
       "contactPhone": null
@@ -11,8 +11,8 @@
     {
       "id": 1,
       "date": "2021-12-10",
-      "startTime": "10:00 A.M.",
-      "endTime": "11:00 A.M.",
+      "startTime": "10:00",
+      "endTime": "11:00",
       "booked": true,
       "contactName": "Will",
       "contactPhone": "4"
@@ -20,8 +20,8 @@
     {
       "id": 2,
       "date": "2021-12-10",
-      "startTime": "11:00 A.M.",
-      "endTime": "10:00 A.M.",
+      "startTime": "11:00",
+      "endTime": "10:00",
       "booked": false,
       "contactName": null,
       "contactPhone": null
@@ -29,8 +29,8 @@
     {
       "id": 3,
       "date": "2021-12-10",
-      "startTime": "12:00 P.M.",
-      "endTime": "1:00 P.M.",
+      "startTime": "12:00",
+      "endTime": "13:00",
       "booked": false,
       "contactName": null,
       "contactPhone": null
@@ -38,8 +38,8 @@
     {
       "id": 4,
       "date": "2021-12-10",
-      "startTime": "1:00 P.M.",
-      "endTime": "2:00 P.M.",
+      "startTime": "13:00",
+      "endTime": "14:00",
       "booked": false,
       "contactName": null,
       "contactPhone": null
@@ -47,24 +47,24 @@
     {
       "id": 5,
       "date": "2021-12-10",
-      "startTime": "2:00 P.M.",
-      "endTime": "3:00 P.M.",
+      "startTime": "14:00",
+      "endTime": "15:00",
       "booked": false,
       "contactName": null,
       "contactPhone": null
     },
     {
       "id": 6,
-      "startTime": "3:00 P.M.",
-      "endTime": "4:00 P.M.",
+      "startTime": "15:00",
+      "endTime": "16:00",
       "booked": false,
       "contactName": null,
       "contactPhone": null
     },
     {
       "id": 7,
-      "startTime": "4:00 P.M.",
-      "endTime": "5:00 P.M.",
+      "startTime": "16:00",
+      "endTime": "17:00",
       "booked": false,
       "contactName": null,
       "contactPhone": null

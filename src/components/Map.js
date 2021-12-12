@@ -22,7 +22,7 @@ const defaultCenter = {
 const Map = (props) => {
   const [showingInfoWindow, setShowingInfoWindow] = useState('-1');
   const { client } = useMqttState();
-  const [showCalendar, setShowCalendar] = useState(false)
+  const [showSideBar, setShowSideBar] = useState(false)
 
   useEffect(() => {
     if (client) {
@@ -31,9 +31,10 @@ const Map = (props) => {
   }, [client])
   
 
-  function calendarHandler(show) {
-    setShowCalendar(show)
+  function sideBarHandler(show) {
+    setShowSideBar(show)
   }
+
   // function handleClick(message) {
   //   return client.publish('frontend/availability/#', message);
   // }
@@ -62,8 +63,9 @@ const showWindow = (index) => {
         mapContainerStyle={containerStyle}
         center={defaultCenter}
         zoom={10}
+        onClick={()=> {showWindow(-1); sideBarHandler(false)}}
       >
-      {showCalendar ? <SideSlide/> : null}
+      {showSideBar ? <SideSlide handleSideBar={sideBarHandler}/> : null}
       {data.dentists.map((dentist, index) => {
         return (
         <div 
@@ -75,7 +77,7 @@ const showWindow = (index) => {
             lng: dentist.coordinate.longitude,
             }}
         />
-        {showingInfoWindow === index ? <DentistTimes dentist={dentist} calendarHandler={calendarHandler} showWindow={showWindow}/> : null}
+        {showingInfoWindow === index ? <DentistTimes dentist={dentist} calendarHandler={sideBarHandler} showWindow={showWindow}/> : null}
         </div>
           ) //lat: dentist.coordinate.latitude, lng: dentist.coordinate.longitude
         })}

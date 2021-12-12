@@ -31,19 +31,31 @@
 .side-bar {
   position: relative;
   width: 50vh;
+  transition: width 2s;
   height: 100vh;
   background-color: white;
   border:1px solid white;
   outline-offset: -20px;
 }
 
-.calendar {
-  width: 50%;
-  height: 120%;
-  outline:1px solid yellow;
+.side-close {
+  right:0.5vh;
   position: absolute;
-  font-size: 0.85em;
+  padding: 8px;
+  background-color: rgb(46, 85, 214);
+  color: white;
+  border: 1px yellowgreen solid;
+  border-radius: 20px;
+  margin-bottom: 20px;
 }
+
+.fc {
+  width: 100%;
+  height: auto;
+  margin-top: 10%;
+  font-size: 0.80em;
+}
+
 
 @keyframes App-logo-spin {
   from {

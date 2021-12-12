@@ -2,36 +2,51 @@ import React from 'react'
 import '../Map.css'
 import { useMqttState } from 'mqtt-react-hooks'
 import { InfoWindow } from '@react-google-maps/api'
-// import TimeSlots from './TimeSlots' 
+// import TimeSlots from './TimeSlots'
 
 const DentistTimes = (props) => {
-const { client } = useMqttState();
-client.publish('frontend/availability/response', 'some_data')
-
+  const { client } = useMqttState()
+  client.publish('frontend/availability/response', 'some_data')
+  console.log(props.dentist)
   return (
     <div>
       <InfoWindow
-      className="background"
+        className="background"
         position={{
           lat: props.dentist.coordinate.latitude,
           lng: props.dentist.coordinate.longitude,
         }}
         options={{
-          pixelOffset: new window.google.maps.Size(
-            0, -30
-          )
+          pixelOffset: new window.google.maps.Size(0, -30),
         }}
-        onMouseOut={() => {props.showWindow("-1")}}
+        onMouseOut={() => {
+          console.log('mouseout')
+          props.showWindow('-1')
+        }}
       >
-       
         <div className="informationWindow">
-          <h2>{props.dentist.name}</h2>
-          <h4>Monday : {props.dentist.openinghours.monday}</h4>
-          <h4>Tuesday : {props.dentist.openinghours.tuesday}</h4>
-          <h4>Wednesday : {props.dentist.openinghours.wednesday}</h4>
-          <h4>Thursday : {props.dentist.openinghours.thursday}</h4>
-          <h4>Friday : {props.dentist.openinghours.friday}</h4>
-        <button onClick={() => {props.calendarHandler(true)}}/>
+          <h3 className="dentistHeading">{props.dentist.name}</h3>
+          <div className="dentistDetail">
+            <p>Monday : {props.dentist.openinghours.monday}</p>
+            <p>Tuesday : {props.dentist.openinghours.tuesday}</p>
+            <p>Wednesday : {props.dentist.openinghours.wednesday}</p>
+            <p>Thursday : {props.dentist.openinghours.thursday}</p>
+            <p>Friday : {props.dentist.openinghours.friday}</p>
+            <div className="dentistExtraDetail">
+              <p>
+                {props.dentist.address} {props.dentist.city} 
+              </p>
+              <p> Dentists: {props.dentist.dentists}</p>
+            </div>
+          </div>
+          <button
+            className="bookingButton"
+            onClick={() => {
+              props.calendarHandler(true)
+            }}
+          >
+            Book a visit
+          </button>
         </div>
       </InfoWindow>
     </div>

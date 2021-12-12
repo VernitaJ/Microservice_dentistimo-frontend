@@ -1,13 +1,49 @@
 .informationWindow
 {
-    background: rgb(46, 85, 214, 0.4);
+    background: rgb(46, 85, 214);
     padding: 2em;
+    margin: 0;
     width:auto;
     color: white;
-    box-shadow: 3px 3px 10px rgba(0,0,0,0.6);
-    border: 1px solid #666;
+    border: 5px solid rgb(255, 255, 255);
+    border-radius: 10px;
 }
 
-.background {
-    background: rgb(255,255,255,0.2)
+.bookingButton {
+    margin-top: 1em;
+    margin-right: 0;
+    margin-left: auto;
+    height: 3em;
+    padding: 0.9em;
+    font-size: 1.2em;
+    background-color: white;
+    border: 1px solid greenyellow;
+    color:rgb(46, 85, 214);
+    border-radius: 50px;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.6);
 }
+
+.dentistHeading {
+    font-size: 1.6em;
+}
+
+.dentistDetail {
+    margin-top: 1.5em;
+    font-size: 1.3em;
+    font-weight: 200;
+}
+
+.dentistDetail p {
+    margin: 5px 0;
+}
+
+.dentistExtraDetail {
+    font-size : 0.8em;
+}
+
+.gm-style .gm-style-iw-c {
+    padding-right: 1px !important;
+    border-radius: 20px;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.6);
+ }
+ 
