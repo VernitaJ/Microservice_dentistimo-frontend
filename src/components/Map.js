@@ -4,6 +4,8 @@ import dentists from '../resources/dentists.json'
 import DentistTimes from './DentistTimeDisplay'
 import { useMqttState } from 'mqtt-react-hooks'
 import SideSlide from './SideSlide'
+import Dentists from './Dentists'
+import { useSubscription} from 'mqtt-react-hooks'
 
 // Create an .env in the frontend with a Maps JavaScript API key.
 const API_KEY = process.env.REACT_APP_GOOGLEMAPS_APIKEY

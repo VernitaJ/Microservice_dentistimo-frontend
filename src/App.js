@@ -1,8 +1,11 @@
-import './App.css';
+import './App.css'
 import Map from './components/Map'
-import { useSubscription } from 'mqtt-react-hooks'
+import { useSubscription, useMqttState} from 'mqtt-react-hooks'
 import { useEffect,useState } from 'react'
-import { useMqttState} from 'mqtt-react-hooks'
+import React, { useEffect, useState } from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 function App() {
 const { connectionStatus } = useMqttState()
@@ -21,8 +24,11 @@ useEffect(() => {
         <h2>Msg: {JSON.stringify(messages)}</h2>
          <Map 
          data={messages}/>
+        <Header />
+        <Map />
+        <Footer />
       </div>
   )
 }
 
-export default App;
+export default App
