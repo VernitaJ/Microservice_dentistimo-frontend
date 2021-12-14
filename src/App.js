@@ -1,7 +1,6 @@
 import './App.css'
 import Map from './components/Map'
 import { useSubscription, useMqttState} from 'mqtt-react-hooks'
-import { useEffect,useState } from 'react'
 import React, { useEffect, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/Header';

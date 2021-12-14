@@ -1,11 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { Marker } from '@react-google-maps/api'
-import { useSubscription } from 'mqtt-react-hooks'
+import { useSubscription, useMqttState } from 'mqtt-react-hooks'
 
+const req = 
+{
+  "requestId":"1",
+  "requestType": "getAll",
+  }
+  
 
 const Dentists = () => {
-    const { message } = useSubscription('frontend/respond/dentists')
+    const { client } = useMqttState();
 
+    client.publish('frontend/dentist/req', JSON.stringify(req))
+    const { message } = useSubscription('frontend/respond/1/dentists')
+  
     if (message) {
       const x = JSON.parse(message.message)
       return (
