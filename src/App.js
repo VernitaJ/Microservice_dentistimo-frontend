@@ -1,25 +1,33 @@
 import './App.css'
 import Map from './components/Map'
+import { useSubscription, useMqttState} from 'mqtt-react-hooks'
+import { useEffect,useState } from 'react'
 import React, { useEffect, useState } from 'react'
-import { Connector, useSubscription } from 'mqtt-react-hooks'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
+
 function App() {
+const { connectionStatus } = useMqttState()
+const [ messages, setMessages] = useState()
+const { message } = useSubscription('frontend/availability/response')
+
+useEffect(() => {
+    if (message) {
+      setMessages(message.message);
+    }
+}, [message])
+
   return (
-    <Connector
-      brokerUrl="ws://localhost:9001"
-      options={{
-        username: 'frontend',
-        password: '1234',
-      }}
-    >
       <div>
+        <h1>Connection: {connectionStatus}</h1>
+        <h2>Msg: {JSON.stringify(messages)}</h2>
+         <Map 
+         data={messages}/>
         <Header />
         <Map />
         <Footer />
       </div>
-    </Connector>
   )
 }
 

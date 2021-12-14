@@ -1,0 +1,72 @@
+[
+    {
+      "id": 0,
+      "date": "2021-12-10",
+      "startTime": "9:00",
+      "endTime": "10:00",
+      "booked": false,
+      "contactName": null,
+      "contactPhone": null
+    },
+    {
+      "id": 1,
+      "date": "2021-12-10",
+      "startTime": "10:00",
+      "endTime": "11:00",
+      "booked": true,
+      "contactName": "Will",
+      "contactPhone": "4"
+    },
+    {
+      "id": 2,
+      "date": "2021-12-10",
+      "startTime": "11:00",
+      "endTime": "10:00",
+      "booked": false,
+      "contactName": null,
+      "contactPhone": null
+    },
+    {
+      "id": 3,
+      "date": "2021-12-10",
+      "startTime": "12:00",
+      "endTime": "13:00",
+      "booked": false,
+      "contactName": null,
+      "contactPhone": null
+    },
+    {
+      "id": 4,
+      "date": "2021-12-10",
+      "startTime": "13:00",
+      "endTime": "14:00",
+      "booked": false,
+      "contactName": null,
+      "contactPhone": null
+    },
+    {
+      "id": 5,
+      "date": "2021-12-10",
+      "startTime": "14:00",
+      "endTime": "15:00",
+      "booked": false,
+      "contactName": null,
+      "contactPhone": null
+    },
+    {
+      "id": 6,
+      "startTime": "15:00",
+      "endTime": "16:00",
+      "booked": false,
+      "contactName": null,
+      "contactPhone": null
+    },
+    {
+      "id": 7,
+      "startTime": "16:00",
+      "endTime": "17:00",
+      "booked": false,
+      "contactName": null,
+      "contactPhone": null
+    }
+  ]
