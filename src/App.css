@@ -29,8 +29,15 @@
   color: #61dafb;
 }
 
+.side-bar-heading {
+  margin-left: 5px;
+  font-size: 30px;
+  font-weight: 600;
+}
+
 .side-bar {
   position: relative;
+  padding-top: 10vh;
   width: 50vh;
   transition: width 2s;
   height: 100vh;
@@ -53,7 +60,7 @@
 .fc {
   width: 100%;
   height: auto;
-  margin-top: 10%;
+  margin-top: 15%;
   font-size: 0.80em;
 }
 

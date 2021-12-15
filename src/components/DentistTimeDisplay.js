@@ -5,9 +5,7 @@ import { InfoWindow } from '@react-google-maps/api'
 // import TimeSlots from './TimeSlots'
 
 const DentistTimes = (props) => {
-  const { client } = useMqttState()
-  client.publish('frontend/availability/response', 'some_data')
-  console.log(props.dentist)
+  
   return (
     <div>
       <InfoWindow
@@ -18,10 +16,6 @@ const DentistTimes = (props) => {
         }}
         options={{
           pixelOffset: new window.google.maps.Size(0, -30),
-        }}
-        onMouseOut={() => {
-          console.log('mouseout')
-          props.showWindow('-1')
         }}
       >
         <div className="informationWindow">
