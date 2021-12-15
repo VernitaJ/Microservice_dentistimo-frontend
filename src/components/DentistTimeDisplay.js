@@ -5,14 +5,16 @@ import { InfoWindow } from '@react-google-maps/api'
 // import TimeSlots from './TimeSlots'
 
 const DentistTimes = (props) => {
-  
+  const { client } = useMqttState()
+  client.publish('frontend/availability/response', 'some_data')
+  console.log(props.dentist.openingHours)
   return (
     <div>
       <InfoWindow
         className="background"
         position={{
-          lat: props.dentist.coordinate.latitude,
-          lng: props.dentist.coordinate.longitude,
+          lat: Number(props.dentist.coordinate.latitude),
+          lng: Number(props.dentist.coordinate.longitude),
         }}
         options={{
           pixelOffset: new window.google.maps.Size(0, -30),
@@ -21,11 +23,11 @@ const DentistTimes = (props) => {
         <div className="informationWindow">
           <h3 className="dentistHeading">{props.dentist.name}</h3>
           <div className="dentistDetail">
-            <p>Monday : {props.dentist.openinghours.monday}</p>
-            <p>Tuesday : {props.dentist.openinghours.tuesday}</p>
-            <p>Wednesday : {props.dentist.openinghours.wednesday}</p>
-            <p>Thursday : {props.dentist.openinghours.thursday}</p>
-            <p>Friday : {props.dentist.openinghours.friday}</p>
+            <p>Monday : {props.dentist.openingHours.monday}</p>
+            <p>Tuesday : {props.dentist.openingHours.tuesday}</p>
+            <p>Wednesday : {props.dentist.openingHours.wednesday}</p>
+            <p>Thursday : {props.dentist.openingHours.thursday}</p>
+            <p>Friday : {props.dentist.openingHours.friday}</p>
             <div className="dentistExtraDetail">
               <p>
                 {props.dentist.address} {props.dentist.city} 
