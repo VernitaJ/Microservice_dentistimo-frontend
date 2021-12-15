@@ -11,7 +11,7 @@ const SideSlide = (props) => {
   const { client } = useMqttState()
   const [ timeslots, setTimeslots] = useState();
   let [request, setRequest] = useState({
-    requestId: 4,
+    requestId: useUniqueId(),
     clinicId: props.clinicId + 1,
   })
 
@@ -33,7 +33,6 @@ const SideSlide = (props) => {
 
   useEffect(() => {
         if (message){
-        console.log("message", message)
         setTimeslots(JSON.parse(message.message))
         }
       }, [message])
@@ -51,7 +50,6 @@ const SideSlide = (props) => {
       <button className="side-close" onClick={() => props.handleSideBar(false)}>
         Cancel
       </button>
-      <h1>{timeslots}</h1>
       <Calendar handleSelect={handleSelect} className="calendar" />
       <TimeSlots date={date} timeslots={initialTimeSlots} />
     </div>

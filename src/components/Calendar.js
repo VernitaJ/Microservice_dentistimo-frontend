@@ -7,7 +7,6 @@ import '../App.css'
 const Calendar = (props) => {
   const handleDateSelect = (selectInfo) => {
     props.handleSelect(selectInfo.dateStr)
-    console.log(selectInfo.dateStr)
   }
 
   return (

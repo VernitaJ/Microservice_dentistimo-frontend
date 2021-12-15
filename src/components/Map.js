@@ -20,7 +20,7 @@ const defaultCenter = {
   lat: 57.6863144,
   lng: 11.9944233,
 }
-const Map = (props) => {
+const Map = () => {
   const [showingInfoWindow, setShowingInfoWindow] = useState('-1');
   const [showSideBar, setShowSideBar] = useState(false)
   

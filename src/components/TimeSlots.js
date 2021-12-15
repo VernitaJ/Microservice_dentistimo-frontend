@@ -23,7 +23,6 @@ const TimeSlots = (props) => {
   }
 
   let dateslots = props.timeslots.filter((timeSlots) => timeSlots.date === (props.date))
-  console.log(dateslots)
 
   return (
     <div>
