@@ -19,8 +19,6 @@ useEffect(() => {
 
   return (
       <div>
-        <h1>Connection: {connectionStatus}</h1>
-        <h2>Msg: {JSON.stringify(messages)}</h2>
          <Map 
          data={messages}/>
         <Header />

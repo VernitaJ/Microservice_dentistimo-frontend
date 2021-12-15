@@ -5,7 +5,7 @@ import SideSlide from './SideSlide'
 import { useSubscription, useMqttState } from 'mqtt-react-hooks'
 import { v4 as uuidv4 } from 'uuid';
 
-import data from '../resources/dentists.json'
+// import data from '../resources/dentists.json'
 
 // Create an .env in the frontend with a Maps JavaScript API key.
 const API_KEY = process.env.REACT_APP_GOOGLEMAPS_APIKEY
@@ -33,6 +33,7 @@ const Map = (props) => {
   const { client } = useMqttState();
   const [showSideBar, setShowSideBar] = useState(false)
   const { message } = useSubscription(`frontend/dentist/${clientReq.requestId}/res`)
+  const [data, setData ]  = useState();
 
   useEffect(() => {
     if (client) {
@@ -42,7 +43,8 @@ const Map = (props) => {
   
   useEffect(() => {
     if(message) {
-      console.log(message)
+      setData(JSON.parse(message.message).response)
+      // console.log(data)
     }
   }, [message])
 
@@ -74,21 +76,21 @@ const showWindow = (index) => {
         onClick={()=> {showWindow(-1); sideBarHandler(false)}}
       >
       {showSideBar ? <SideSlide handleSideBar={sideBarHandler}/> : null}
-      {data.dentists.map((dentist, index) => {
+      {data ? data.map((dentist, index) => {
         return (
         <div 
         key = {index}>
           <Marker
             onClick={()=>showWindow(index)}
             position={{
-            lat: dentist.coordinate.latitude,
-            lng: dentist.coordinate.longitude,
+            lat: Number(dentist.coordinate.latitude),
+            lng: Number(dentist.coordinate.longitude),
             }}
         />
         {showingInfoWindow === index ? <DentistTimes dentist={dentist} calendarHandler={sideBarHandler} showWindow={showWindow}/> : null}
         </div>
           ) //lat: dentist.coordinate.latitude, lng: dentist.coordinate.longitude
-        })}
+        }) : null }
       </GoogleMap>
     </LoadScript>
   )
