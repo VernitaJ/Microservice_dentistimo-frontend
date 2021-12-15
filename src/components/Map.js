@@ -28,9 +28,8 @@ const defaultCenter = {
   lat: 57.6863144,
   lng: 11.9944233,
 }
-const Map = (props) => {
+const Map = () => {
   const [showingInfoWindow, setShowingInfoWindow] = useState('-1');
-  const { client } = useMqttState();
   const [showSideBar, setShowSideBar] = useState(false)
   const { message } = useSubscription(`frontend/dentist/${clientReq.requestId}/res`)
   const [data, setData ]  = useState();
@@ -54,10 +53,6 @@ const Map = (props) => {
     setShowSideBar(show)
   }
 
-  // function handleClick(message) {
-  //   return client.publish('frontend/availability/#', message);
-  // }
-
   // Permission to track location doesn't do anything currently. Just enabling location tracking for future implementations/updates.
 
   //const { message } = useSubscription('frontend/respond/1/dentists')
@@ -66,7 +61,11 @@ const Map = (props) => {
 
 const showWindow = (index) => {
   setShowingInfoWindow(index);
+  sideBarHandler(false);
 }
+
+  const data = dentists;
+  
   return (
     <LoadScript googleMapsApiKey={API_KEY}>
       <GoogleMap
@@ -75,8 +74,8 @@ const showWindow = (index) => {
         zoom={10}
         onClick={()=> {showWindow(-1); sideBarHandler(false)}}
       >
-      {showSideBar ? <SideSlide handleSideBar={sideBarHandler}/> : null}
-      {data ? data.map((dentist, index) => {
+      {showSideBar ? <SideSlide handleSideBar={sideBarHandler} clinicId={showingInfoWindow} dentist={data.dentists[showingInfoWindow]}/> : null}
+      {data.dentists.map((dentist, index) => {
         return (
         <div 
         key = {index}>

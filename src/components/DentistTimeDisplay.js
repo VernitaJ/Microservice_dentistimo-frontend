@@ -19,10 +19,6 @@ const DentistTimes = (props) => {
         options={{
           pixelOffset: new window.google.maps.Size(0, -30),
         }}
-        onMouseOut={() => {
-          console.log('mouseout')
-          props.showWindow('-1')
-        }}
       >
         <div className="informationWindow">
           <h3 className="dentistHeading">{props.dentist.name}</h3>

@@ -7,15 +7,6 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 
 function App() {
-const { connectionStatus } = useMqttState()
-const [ messages, setMessages] = useState()
-const { message } = useSubscription('frontend/availability/response')
-
-useEffect(() => {
-    if (message) {
-      setMessages(message.message);
-    }
-}, [message])
 
   return (
       <div>
