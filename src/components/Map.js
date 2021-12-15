@@ -66,7 +66,7 @@ const showWindow = (index) => {
         zoom={10}
         onClick={()=> {showWindow(-1); sideBarHandler(false)}}
       >
-      {showSideBar ? <SideSlide handleSideBar={sideBarHandler} clinicId={showingInfoWindow} dentist={data.dentists[showingInfoWindow]}/> : null}
+      {showSideBar ? <SideSlide handleSideBar={sideBarHandler} clinicId={showingInfoWindow} dentist={data[showingInfoWindow]}/> : null}
       {data ? data.map((dentist, index) => {
         return (
         <div 
