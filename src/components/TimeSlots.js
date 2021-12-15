@@ -10,7 +10,6 @@ import {
   ModalBody,
   ModalFooter,
 } from 'reactstrap'
-import initialTimeSlots from '../timeslots.json'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 const TimeSlots = (props) => {
@@ -22,15 +21,13 @@ const TimeSlots = (props) => {
     setCollapse(index)
     setIsOpen(!isOpen)
   }
-  
-  let timeslots = initialTimeSlots
 
-  let dateslots = timeslots.filter((timeSlots) => timeSlots.date === (props.date))
+  let dateslots = props.timeslots.filter((timeSlots) => timeSlots.date === (props.date))
 
   return (
     <div>
       {dateslots.length > 0 ? dateslots.map(timeSlot => (
-          <div key={timeSlot.id}>
+          <div key={timeSlot.startAt}>
             <Button
               color="primary"
               onClick={() => toggle(timeSlot.id)}

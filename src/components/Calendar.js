@@ -5,14 +5,12 @@ import interactionPlugin from '@fullcalendar/interaction'
 import '../App.css'
 
 const Calendar = (props) => {
-
   const handleDateSelect = (selectInfo) => {
     props.handleSelect(selectInfo.dateStr)
   }
 
   return (
     <FullCalendar
-    className="calendar"
       plugins={[dayGridPlugin, interactionPlugin]}
       headerToolbar={{
         left: 'prev,next',
