@@ -5,8 +5,6 @@ import SideSlide from './SideSlide'
 import { useSubscription, useMqttState } from 'mqtt-react-hooks'
 import { v4 as uuidv4 } from 'uuid';
 
-// import data from '../resources/dentists.json'
-
 // Create an .env in the frontend with a Maps JavaScript API key.
 const API_KEY = process.env.REACT_APP_GOOGLEMAPS_APIKEY
 
@@ -31,6 +29,7 @@ const defaultCenter = {
 const Map = () => {
   const [showingInfoWindow, setShowingInfoWindow] = useState('-1');
   const [showSideBar, setShowSideBar] = useState(false)
+  const { client } = useMqttState();
   const { message } = useSubscription(`frontend/dentist/${clientReq.requestId}/res`)
   const [data, setData ]  = useState();
 
@@ -43,7 +42,7 @@ const Map = () => {
   useEffect(() => {
     if(message) {
       setData(JSON.parse(message.message).response)
-      // console.log(data)
+
     }
   }, [message])
 
@@ -54,17 +53,10 @@ const Map = () => {
   }
 
   // Permission to track location doesn't do anything currently. Just enabling location tracking for future implementations/updates.
-
-  //const { message } = useSubscription('frontend/respond/1/dentists')
-  //console.log(message)
-  //const data = message.message;
-
 const showWindow = (index) => {
   setShowingInfoWindow(index);
   sideBarHandler(false);
 }
-
-  const data = dentists;
   
   return (
     <LoadScript googleMapsApiKey={API_KEY}>
@@ -74,8 +66,8 @@ const showWindow = (index) => {
         zoom={10}
         onClick={()=> {showWindow(-1); sideBarHandler(false)}}
       >
-      {showSideBar ? <SideSlide handleSideBar={sideBarHandler} clinicId={showingInfoWindow} dentist={data.dentists[showingInfoWindow]}/> : null}
-      {data.dentists.map((dentist, index) => {
+      {showSideBar ? <SideSlide handleSideBar={sideBarHandler} clinicId={showingInfoWindow} dentist={data[showingInfoWindow]}/> : null}
+      {data ? data.map((dentist, index) => {
         return (
         <div 
         key = {index}>

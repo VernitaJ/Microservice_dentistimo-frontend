@@ -7,7 +7,7 @@ import { InfoWindow } from '@react-google-maps/api'
 const DentistTimes = (props) => {
   const { client } = useMqttState()
   client.publish('frontend/availability/response', 'some_data')
-  console.log(props.dentist.openingHours)
+
   return (
     <div>
       <InfoWindow
