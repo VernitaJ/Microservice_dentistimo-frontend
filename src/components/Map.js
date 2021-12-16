@@ -42,7 +42,7 @@ const Map = () => {
   useEffect(() => {
     if(message) {
       setData(JSON.parse(message.message).response)
-      // console.log(data)
+
     }
   }, [message])
 
