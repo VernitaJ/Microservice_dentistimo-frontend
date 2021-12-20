@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { Connector} from 'mqtt-react-hooks'
+import { Connector } from 'mqtt-react-hooks'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
