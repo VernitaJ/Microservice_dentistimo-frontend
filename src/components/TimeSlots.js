@@ -21,8 +21,7 @@ const TimeSlots = (props) => {
     setCollapse(index)
     setIsOpen(!isOpen)
   }
-
-  let dateslots = props.timeslots.filter((timeSlots) => timeSlots.date === (props.date))
+  let dateslots = props.timeslots.filter((timeslot) => timeslot.startAt.substring(0,10) === props.date && timeslot.clinicId === props.clinicId)
 
   return (
     <div>
@@ -33,7 +32,7 @@ const TimeSlots = (props) => {
               onClick={() => toggle(timeSlot.id)}
               style={{ marginBottom: '1rem' }}
             >
-              {timeSlot.startTime} - {timeSlot.endTime}
+              {timeSlot.startAt.substring(11,16)} - {timeSlot.endAt.substring(11,16)}
             </Button>
             {timeSlot.id === collapse ? (
               <Modal isOpen={isOpen} className="booking-modal" backdrop={true}>
