@@ -23,11 +23,11 @@ console.log(props.dentist)
         <div className="informationWindow">
           <h3 className="dentistHeading">{props.dentist.name}</h3>
           <div className="dentistDetail">
-            <p>Monday : {props.dentist.openinghours.monday}</p>
-            <p>Tuesday : {props.dentist.openinghours.tuesday}</p>
-            <p>Wednesday : {props.dentist.openinghours.wednesday}</p>
-            <p>Thursday : {props.dentist.openinghours.thursday}</p>
-            <p>Friday : {props.dentist.openinghours.friday}</p>
+            <p>Monday : {props.dentist.openingHours.monday}</p>
+            <p>Tuesday : {props.dentist.openingHours.tuesday}</p>
+            <p>Wednesday : {props.dentist.openingHours.wednesday}</p>
+            <p>Thursday : {props.dentist.openingHours.thursday}</p>
+            <p>Friday : {props.dentist.openingHours.friday}</p>
             <div className="dentistExtraDetail">
               <p>
                 {props.dentist.address} {props.dentist.city} 
