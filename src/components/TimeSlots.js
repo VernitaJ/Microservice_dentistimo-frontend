@@ -50,6 +50,7 @@ const TimeSlots = (props) => {
   const toggleOnConfirmationAcceptModal = () => {
     setConfirmationModalState(!isConfirmationModalOpen)
     setIsConfirmed(!isConfirmed)
+    props.handleSideBar(false);
   }
 
   const toggleOnConfirmationRejectModal = () => {
@@ -64,7 +65,8 @@ const TimeSlots = (props) => {
   }
   let dateslots = []
   if (props.timeslots) {
-    dateslots= props.timeslots.response.filter((timeslot) => timeslot.startAt.substring(0,10) === props.date && timeslot.clinicId === props.clinicId)
+    dateslots= props.timeslots.response.filter((timeslot) => timeslot.startAt.substring(0,10) === props.date && timeslot.clinicId === props.clinicId && timeslot.status === 'available')
+    console.log(dateslots);
   }
 
   return (
@@ -124,13 +126,14 @@ const TimeSlots = (props) => {
                   <Button color="primary" onClick={() => {
                     const request = {
                       requestId: uuidv4(),
-                      clinicId: timeSlot.id,
+                      clinicId: props.clinicId,
                       startAt: timeSlot.startAt,
-                      endAt: timeSlot.endAT
+                      endAt: timeSlot.endAt
                     }
                     setRequest(request);
                     sendRequest(request);
                     setIsOpen(false);
+                    // client.publish(`frontend/availability/req`, request)
                   }}>
                     Confirm
                   </Button>{' '}

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import Calendar from './Calendar'
 import '../App.css'
 import TimeSlots from './TimeSlots'
-import initialTimeSlots from '../timeslots.json'
 import { useSubscription, useMqttState } from 'mqtt-react-hooks'
 
 // @ts-check
@@ -54,7 +53,7 @@ const SideSlide = (props) => {
         Cancel
       </button>
       <Calendar handleSelect={handleSelect} className="calendar" />
-      <TimeSlots date={date} timeslots={timeslots} clinicId={request.clinicId}/>
+      <TimeSlots date={date} timeslots={timeslots} clinicId={request.clinicId} handleSideBar={props.handleSideBar}/>
     </div>
   )
 }
