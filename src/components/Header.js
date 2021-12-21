@@ -1,20 +1,14 @@
-import Navbar from 'react-bootstrap/Navbar'
-import Container from 'react-bootstrap/Container';
-import '../App.css';
+import { FaTooth } from 'react-icons/fa'
+import '../App.css'
 function Header() {
-    
   return (
-    <div>
-      <Navbar bg="dark" variant="dark" fixed="top">
-        <Container>
-          <Navbar.Brand className="justify-content-start" href="#home"> 
-            Dentistimo
-          </Navbar.Brand>
-          <Navbar.Toggle />
-          <Navbar.Collapse className="justify-content-end">
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+    <div className="header-container">
+      <header className="inner-header">
+        <div className="tooth-logo">
+          <FaTooth />
+        </div>
+        <div className="brand">Dentistimo</div>
+      </header>
     </div>
   )
 }
