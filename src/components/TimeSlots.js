@@ -63,7 +63,6 @@ const TimeSlots = (props) => {
     setIsOpen(!isOpen)
   }
   let dateslots = []
-  console.log(props.timeslots)
   if (props.timeslots) {
     dateslots= props.timeslots.response.filter((timeslot) => timeslot.startAt.substring(0,10) === props.date && timeslot.clinicId === props.clinicId)
   }
