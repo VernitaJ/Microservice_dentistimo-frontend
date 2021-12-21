@@ -1,3 +1,5 @@
+import { useMqttState, useSubscription } from 'mqtt-react-hooks'
+import { v4 as uuidv4 } from 'uuid'
 import React, { useEffect, useState } from 'react'
 import {
   Button,
@@ -11,13 +13,13 @@ import {
   ModalFooter,
 } from 'reactstrap'
 import QRCode from 'qrcode.react'
-import { v4 as uuidv4 } from 'uuid'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { useMqttState, useSubscription } from 'mqtt-react-hooks'
+
 
 const TimeSlots = (props) => {
   let [collapse, setCollapse] = useState('-1')
   let [isOpen, setIsOpen] = useState(false)
+  const {client} = useMqttState()
 
   let [isConfirmed, setIsConfirmed] = useState(false);
   let [isRejected, setIsRejected] = useState(false);
@@ -27,7 +29,6 @@ const TimeSlots = (props) => {
 
   let name, email, mobile;
   
-  const { client } = useMqttState();
   const { message } = useSubscription(`dentistimo/booking/${request.requestId}/res`)
 
   useEffect(() => {
@@ -56,28 +57,31 @@ const TimeSlots = (props) => {
     setIsRejected(!isRejected)
   }
 
+
   const toggle = (index) => {
     setCollapse(index)
     setIsOpen(!isOpen)
   }
-
-  let dateslots = props.timeslots.filter((timeSlots) => timeSlots.date === (props.date))
+  let dateslots = []
+  if (props.timeslots) {
+    dateslots= props.timeslots.response.filter((timeslot) => timeslot.startAt.substring(0,10) === props.date && timeslot.clinicId === props.clinicId)
+  }
 
   return (
     <div>
       {dateslots.length > 0 ? dateslots.map(timeSlot => (
-          <div key={timeSlot.startAt}>
+          <div key={timeSlot._id}>
             <Button
               color="primary"
-              onClick={() => toggle(timeSlot.id)}
+              onClick={() => toggle(timeSlot._id)}
               style={{ marginBottom: '1rem' }}
             >
-              {timeSlot.startTime} - {timeSlot.endTime}
+              {timeSlot.startAt.substring(11,16)} - {timeSlot.endAt.substring(11,16)}
             </Button>
-            {timeSlot.id === collapse ? (
+            {timeSlot._id === collapse ? (
               <Modal isOpen={isOpen} className="booking-modal" backdrop={true}>
                 <ModalHeader>
-                  You've selected: {timeSlot.startTime} - {timeSlot.endTime}
+                  You've selected: {timeSlot.startAt.substring(11,16)} - {timeSlot.endAt.substring(11,16)}
                 </ModalHeader>
                 <ModalBody>
                   <Form>
@@ -121,8 +125,8 @@ const TimeSlots = (props) => {
                     const request = {
                       requestId: uuidv4(),
                       clinicId: timeSlot.id,
-                      startAt: timeSlot.startTime,
-                      endAt: timeSlot.endTime
+                      startAt: timeSlot.startAt,
+                      endAt: timeSlot.endAT
                     }
                     setRequest(request);
                     sendRequest(request);

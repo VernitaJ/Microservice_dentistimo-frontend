@@ -9,20 +9,22 @@ import { useSubscription, useMqttState } from 'mqtt-react-hooks'
 const SideSlide = (props) => {
   let [date, setDate] = useState('')
   const { client } = useMqttState()
-  const [ timeslots, setTimeslots] = useState();
+  const [timeslots, setTimeslots] = useState()
   let [request, setRequest] = useState({
     requestId: useUniqueId(),
     clinicId: props.clinicId + 1,
   })
 
-  const { message } = useSubscription([`frontend/timeslot/${request.requestId}/res`])
+  const { message } = useSubscription([
+    `frontend/timeslot/${request.requestId}/res`,
+  ])
 
   useEffect(() => {
     if (client) {
-      console.log("publishing..")
-        client.publish('frontend/timeslot/req', JSON.stringify(request))
+      console.log('publishing..')
+      client.publish('frontend/timeslot/req', JSON.stringify(request))
     }
-}, [client])
+  }, [client])
 
   function useUniqueId() {
     const [id] = useState(
@@ -31,13 +33,13 @@ const SideSlide = (props) => {
     return id
   }
 
+
   useEffect(() => {
-        if (message){
-        setTimeslots(JSON.parse(message.message))
-        console.log(message)
-        }
-      }, [message])
-   
+    if (message) {
+      setTimeslots(JSON.parse(message.message))
+      console.log(message)
+    }
+  }, [message])
 
   const handleSelect = (date) => {
     setDate(date)
@@ -52,7 +54,7 @@ const SideSlide = (props) => {
         Cancel
       </button>
       <Calendar handleSelect={handleSelect} className="calendar" />
-      <TimeSlots date={date} timeslots={initialTimeSlots} />
+      <TimeSlots date={date} timeslots={timeslots} clinicId={request.clinicId}/>
     </div>
   )
 }
