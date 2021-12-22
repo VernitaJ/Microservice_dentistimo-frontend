@@ -49,7 +49,7 @@ const BookingModal = (props) => {
   const toggleOnConfirmationAcceptModal = () => {
     setConfirmationModalState(!isConfirmationModalOpen)
     setIsConfirmed(!isConfirmed)
-    props.handleSideBar(false)
+    props.handleSidebar(false)
   }
 
   const toggleOnConfirmationRejectModal = () => {
@@ -128,7 +128,7 @@ const BookingModal = (props) => {
               }
               setRequest(request)
               sendRequest(request)
-              props.toggle("-1")
+              props.toggle(props.timeslot._id.$oid)
             }}
           >
             Confirm

@@ -68,7 +68,7 @@ const Map = () => {
       >
         {showSideBar ? (
           <SideSlide
-            handleSideBar={sideBarHandler}
+            handleSidebar={sideBarHandler}
             clinicId={showingInfoWindow}
             dentist={data[showingInfoWindow]}
           />

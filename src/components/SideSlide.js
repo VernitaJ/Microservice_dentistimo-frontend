@@ -53,7 +53,7 @@ const SideSlide = (props) => {
         Cancel
       </button>
       <Calendar handleSelect={handleSelect} className="calendar" />
-      <TimeSlots date={date} timeslots={timeslots} clinicId={request.clinicId} handleSideBar={props.handleSideBar}/>
+      <TimeSlots date={date} timeslots={timeslots} clinicId={request.clinicId} handleSidebar={props.handleSidebar}/>
     </div>
   )
 }

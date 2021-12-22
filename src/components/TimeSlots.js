@@ -1,7 +1,7 @@
 import { useMqttState } from 'mqtt-react-hooks'
 import React, { useEffect, useState } from 'react'
 import { Button } from 'reactstrap'
-// import timeslots from '../resources/timeslots.json' //Vernita's Test slots
+import timeslots from '../resources/timeslots.json' //Vernita's Test slots
 import 'bootstrap/dist/css/bootstrap.min.css'
 import BookingModal from './BookingModal'
 
