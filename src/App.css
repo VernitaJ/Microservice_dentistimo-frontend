@@ -2,12 +2,85 @@
   text-align: center;
 }
 
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
+.header-container {
+  height: 60px;
+  width: 100%;
+  background: rgb(65, 64, 68);
+  background: linear-gradient(
+    180deg,
+    rgba(65, 64, 68, 0.3) 0%,
+    rgba(197, 197, 210, 0.3) 1%,
+    rgba(179, 181, 181, 0.3) 100%
+  );
+  position: fixed;
+  z-index: 1;
+  box-shadow: inset 0 0 1.2px #000000;
+}
 
+.inner-header {
+  align-items: center;
+  height: 100%;
+  margin: 0 auto;
+  font-weight: 500;
+  font-size: 1.8rem;
+  max-width: 94%;
+  display: flex;
+  justify-content: start;
+  color: white;
+  filter: drop-shadow(0px 0.3px 2px #525151);
+}
+
+.brand {
+  font-family: 'Comfortaa', cursive;
+  font-weight: 300;
+  margin-top: 3px;
+}
+.tooth-logo {
+  margin: 3px;
+  margin-top: -9px;
+}
+
+.footer-container {
+  height: 60px;
+  margin-top: -60px;
+  width: 100%;
+  background: rgb(65, 64, 68);
+  background: linear-gradient(
+    0deg,
+    rgba(65, 64, 68, 0.3) 0%,
+    rgba(197, 197, 210, 0.3) 1%,
+    rgba(179, 181, 181, 0.3) 100%
+  );
+  position: relative;
+  overflow: none;
+  z-index: 1;
+  box-shadow: inset 0 0 1.2px #000000;
+}
+.inner-footer div {
+  margin-top: 19px;
+}
+.inner-footer {
+  max-width: 40%;
+  margin: 0 auto;
+  justify-content: space-between;
+  display: flex;
+  font-family: 'Comfortaa', cursive;
+  font-weight: 300;
+  color: white;
+}
+.email-link {
+  color: white;
+  text-decoration: none;
+  transition: 0.1s;
+}
+.email-link:hover {
+  color: rgb(211, 206, 221);
+  transition: 0.2s;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -42,12 +115,12 @@
   transition: width 2s;
   height: 100vh;
   background-color: white;
-  border:1px solid white;
+  border: 1px solid white;
   outline-offset: -20px;
 }
 
 .side-close {
-  right:0.5vh;
+  right: 0.5vh;
   position: absolute;
   padding: 8px;
   background-color: rgb(46, 85, 214);
@@ -61,9 +134,8 @@
   width: 100%;
   height: auto;
   margin-top: 15%;
-  font-size: 0.80em;
+  font-size: 0.8em;
 }
-
 
 @keyframes App-logo-spin {
   from {
