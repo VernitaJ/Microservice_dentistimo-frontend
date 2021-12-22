@@ -33,7 +33,6 @@ const Map = () => {
     `frontend/dentist/${clientReq.requestId}/res`
   )
   const [data, setData] = useState()
-console.log(dentists, data)
   useEffect(() => {
     if (client) {
       client.publish(`frontend/dentist/req`, JSON.stringify(clientReq))
