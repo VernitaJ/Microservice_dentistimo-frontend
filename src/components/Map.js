@@ -10,7 +10,7 @@ const API_KEY = process.env.REACT_APP_GOOGLEMAPS_APIKEY
 
 const containerStyle = {
   width: '100%',
-  height: '100vh',
+  height: '90vh',
   zIndex: 0,
 }
 
