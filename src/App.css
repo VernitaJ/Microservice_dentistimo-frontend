@@ -111,7 +111,7 @@
 .side-bar {
   position: relative;
   padding-top: 10vh;
-  width: 50vh;
+  width: 60vh;
   transition: width 2s;
   height: 100vh;
   background-color: white;
@@ -130,12 +130,34 @@
   margin-bottom: 20px;
 }
 
+.timeslot-container {
+  max-width: 40vw;
+  max-height: 50vh;
+}
+
+.timeslot-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 90%;
+}
+
 .fc {
-  width: 100%;
+  width: 95%;
   height: auto;
-  margin-top: 15%;
+  margin: 15% 2% 0;
   font-size: 0.8em;
 }
+
+.fc .fc-daygrid-body-unbalanced .fc-daygrid-day-events {
+  position: relative;
+  display: none;
+
+}
+
+.fc .fc-daygrid-day-number {
+  padding-right: 8px;
+}
+
 
 @keyframes App-logo-spin {
   from {

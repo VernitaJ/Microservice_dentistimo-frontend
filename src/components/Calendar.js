@@ -15,9 +15,10 @@ const Calendar = (props) => {
       headerToolbar={{
         left: 'prev,next',
         center: 'title',
-        right: 'dayGridMonth',
+        right: 'dayGridWeek, dayGridMonth',
       }}
       editable={false}
+      height= {350}
       selectable={true}
       dateClick={handleDateSelect}
       // select={(selectionInfo)=> console.log(selectionInfo)}
