@@ -1,7 +1,7 @@
 import { useMqttState } from 'mqtt-react-hooks'
 import React, { useEffect, useState } from 'react'
 import { Button } from 'reactstrap'
-// import timeslots from '../resources/timeslots.json' Vernita's Test slots
+// import timeslots from '../resources/timeslots.json' //Vernita's Test slots
 import 'bootstrap/dist/css/bootstrap.min.css'
 import BookingModal from './BookingModal'
 
@@ -25,7 +25,7 @@ const TimeSlots = (props) => {
     setIsOpen(!isOpen)
   }
 
-  //Vernita's test slots
+  // Vernita's test slots
   // if (timeslots) {
   //   slots = timeslots.filter(
   //     (timeslot) =>
@@ -47,7 +47,7 @@ const TimeSlots = (props) => {
               <Button
                 color="primary"
                 onClick={() => toggle(timeSlot._id.$oid)}
-                style={{ margin: '0.3rem', padding: '0.4rem', width: '8.5rem' }}
+                style={{ margin: '0.3rem', padding: '0.2rem', width: '8.5rem' }}
               >
                 {timeSlot.startAt.substring(11, 16)} -{' '}
                 {timeSlot.endAt.substring(11, 16)}

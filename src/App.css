@@ -120,7 +120,7 @@
 }
 
 .side-close {
-  right: 0.5vh;
+  right: 1.5vh;
   position: absolute;
   padding: 8px;
   background-color: rgb(46, 85, 214);
@@ -133,25 +133,26 @@
 .timeslot-container {
   max-width: 40vw;
   max-height: 50vh;
+  overflow: auto;
 }
 
 .timeslot-buttons {
   display: flex;
   flex-wrap: wrap;
   max-width: 90%;
+  padding-bottom: 20vh;
 }
 
 .fc {
   width: 95%;
   height: auto;
-  margin: 15% 2% 0;
+  margin: 0% 2% 0;
   font-size: 0.8em;
 }
 
 .fc .fc-daygrid-body-unbalanced .fc-daygrid-day-events {
   position: relative;
   display: none;
-
 }
 
 .fc .fc-daygrid-day-number {

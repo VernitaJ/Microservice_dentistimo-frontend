@@ -15,7 +15,7 @@ const Calendar = (props) => {
       headerToolbar={{
         left: 'prev,next',
         center: 'title',
-        right: 'dayGridWeek, dayGridMonth',
+        right: 'none',
       }}
       editable={false}
       height= {350}
