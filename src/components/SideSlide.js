@@ -20,7 +20,6 @@ const SideSlide = (props) => {
 
   useEffect(() => {
     if (client) {
-      console.log('publishing..')
       client.publish('frontend/timeslot/req', JSON.stringify(request))
     }
   }, [client])
@@ -36,7 +35,6 @@ const SideSlide = (props) => {
   useEffect(() => {
     if (message) {
       setTimeslots(JSON.parse(message.message))
-      console.log(message)
     }
   }, [message])
 

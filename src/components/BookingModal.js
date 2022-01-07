@@ -42,8 +42,10 @@ const BookingModal = (props) => {
     }
   }, [message, request])
 
-  const sendRequest = (message) => {
-    client.publish(`dentistimo/booking/req`, JSON.stringify(message))
+  const sendRequest = (msg) => {
+    client.publish(`dentistimo/booking/req`, JSON.stringify(msg))
+    // await message from backend
+    setTimeout(() => {props.toggle(props.timeslot._id)}, 5000);
   }
 
   const toggleOnConfirmationAcceptModal = () => {
@@ -116,9 +118,9 @@ const BookingModal = (props) => {
           <Button
             color="primary"
             onClick={() => {
-              const request = {
+              const req = {
                 requestId: uuidv4(),
-                clinicId: props.clinicId,
+                clinicId: String(props.timeslot.clinicId),
                 startAt: props.timeslot.startAt,
                 endAt: props.timeslot.endAt,
                 patientName: name,
@@ -126,9 +128,8 @@ const BookingModal = (props) => {
                 patientPhone: mobile,
                 message: patientMessage,
               }
-              setRequest(request)
-              sendRequest(request)
-              props.toggle(props.timeslot._id.$oid)
+              setRequest(req)
+              sendRequest(req)
             }}
           >
             Confirm

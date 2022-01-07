@@ -4,7 +4,6 @@ import DentistTimes from './DentistTimeDisplay'
 import SideSlide from './SideSlide'
 import { useSubscription, useMqttState } from 'mqtt-react-hooks'
 import { v4 as uuidv4 } from 'uuid'
-// import dentists from '../resources/dentists.json' //Vernita's test data
 
 // Create an .env in the frontend with a Maps JavaScript API key.
 const API_KEY = process.env.REACT_APP_GOOGLEMAPS_APIKEY
