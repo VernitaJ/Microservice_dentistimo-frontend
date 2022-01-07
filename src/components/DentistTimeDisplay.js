@@ -2,12 +2,10 @@ import React from 'react'
 import '../Map.css'
 import { useMqttState } from 'mqtt-react-hooks'
 import { InfoWindow } from '@react-google-maps/api'
-// import TimeSlots from './TimeSlots'
 
 const DentistTimes = (props) => {
   const { client } = useMqttState()
   client.publish('frontend/availability/response', 'some_data')
-console.log(props.dentist)
   return (
     <div>
       <InfoWindow

@@ -20,7 +20,6 @@ const SideSlide = (props) => {
 
   useEffect(() => {
     if (client) {
-      console.log('publishing..')
       client.publish('frontend/timeslot/req', JSON.stringify(request))
     }
   }, [client])
@@ -36,7 +35,6 @@ const SideSlide = (props) => {
   useEffect(() => {
     if (message) {
       setTimeslots(JSON.parse(message.message))
-      console.log(message)
     }
   }, [message])
 
@@ -53,7 +51,7 @@ const SideSlide = (props) => {
         Cancel
       </button>
       <Calendar handleSelect={handleSelect} className="calendar" />
-      <TimeSlots date={date} timeslots={timeslots} clinicId={request.clinicId} handleSideBar={props.handleSideBar}/>
+      <TimeSlots date={date} timeslots={timeslots} clinicId={request.clinicId} handleSidebar={props.handleSidebar}/>
     </div>
   )
 }

@@ -32,7 +32,6 @@ const Map = () => {
     `frontend/dentist/${clientReq.requestId}/res`
   )
   const [data, setData] = useState()
-
   useEffect(() => {
     if (client) {
       client.publish(`frontend/dentist/req`, JSON.stringify(clientReq))
@@ -68,7 +67,7 @@ const Map = () => {
       >
         {showSideBar ? (
           <SideSlide
-            handleSideBar={sideBarHandler}
+            handleSidebar={sideBarHandler}
             clinicId={showingInfoWindow}
             dentist={data[showingInfoWindow]}
           />
@@ -92,7 +91,7 @@ const Map = () => {
                     />
                   ) : null}
                 </div>
-              ) //lat: dentist.coordinate.latitude, lng: dentist.coordinate.longitude
+              ) 
             })
           : null}
       </GoogleMap>
