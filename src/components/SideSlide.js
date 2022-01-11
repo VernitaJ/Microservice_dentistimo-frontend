@@ -47,7 +47,7 @@ const SideSlide = (props) => {
       <h4 className="side-bar-heading">
         {props.dentist ? props.dentist.name : null}
       </h4>
-      <button className="side-close" onClick={() => props.handleSideBar(false)}>
+      <button className="side-close" onClick={() => props.handleSidebar(false)}>
         Cancel
       </button>
       <Calendar handleSelect={handleSelect} className="calendar" />
