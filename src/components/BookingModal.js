@@ -22,10 +22,44 @@ const BookingModal = (props) => {
   let [isConfirmationModalOpen, setConfirmationModalState] = useState(false)
   let [isRejectModalOpen, setRejectModalState] = useState(false)
   let name, email, mobile, patientMessage
-
+  let [errorMessage, setErrorMessage] = useState('')
   const { message } = useSubscription(
     `dentistimo/booking/${request.requestId}/res`
   )
+
+  const sendUserInput = () => {
+    let nameregex = new RegExp(/^(?=.{1,40}$)[a-zA-Z]+(?:[-'\s][a-zA-Z]+)*$/)
+    let mobileregex = new RegExp(/^[0-9]{10}$/)
+    let emailregex = new RegExp(/^\w+([.-]?\w+)@\w+([.-]?\w+)*(.\w{2,3})+$/)
+    let error = "";
+    if (!nameregex.test(name)) {
+      error += '\n' + 'Enter a valid name.'
+      name = ""
+    }
+    if (!emailregex.test(email)) {
+      error += '\n' + 'Enter a valid email address.'
+      email = ""
+    }
+    if (!mobileregex.test(mobile)) {
+      error += '\n' + 'Enter a valid mobile number.'
+      mobile = ""
+    }
+    setErrorMessage(error)
+    if (error === "") {
+      const req = {
+        requestId: uuidv4(),
+        clinicId: String(props.timeslot.clinicId),
+        startAt: props.timeslot.startAt,
+        endAt: props.timeslot.endAt,
+        patientName: name,
+        patientEmail: email,
+        patientPhone: mobile,
+        message: patientMessage,
+      }
+      setRequest(req)
+      sendRequest(req)
+    }
+  }
 
   useEffect(() => {
     if (message === undefined) {
@@ -113,24 +147,12 @@ const BookingModal = (props) => {
               />
             </FormGroup>
           </Form>
+          {errorMessage && <div className="error"> {errorMessage} </div>}
         </ModalBody>
         <ModalFooter>
           <Button
             color="primary"
-            onClick={() => {
-              const req = {
-                requestId: uuidv4(),
-                clinicId: String(props.timeslot.clinicId),
-                startAt: props.timeslot.startAt,
-                endAt: props.timeslot.endAt,
-                patientName: name,
-                patientEmail: email,
-                patientPhone: mobile,
-                message: patientMessage,
-              }
-              setRequest(req)
-              sendRequest(req)
-            }}
+            onClick={() => sendUserInput()}
           >
             Confirm
           </Button>{' '}

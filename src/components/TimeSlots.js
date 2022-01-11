@@ -13,6 +13,7 @@ const TimeSlots = (props) => {
     dateslots = []
 
   if (props.timeslots) {
+    console.log(props.timeslots)
     slots = props.timeslots.response.filter((timeslot) => timeslot.startAt.substring(0,10) === props.date && timeslot.clinicId === props.clinicId && timeslot.status === 'available')
     dateslots = [
       ...new Map(slots.map((item) => [item['startAt'], item])).values(),
